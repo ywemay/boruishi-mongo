@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  mongosrv:
+    image: mongo:4.2.5
+    restart: always
+    container_name: boruishi-mongo
+    environment:
+      MONGO_INITDB_DATABASE: boruishi
+      MONGO_INITDB_ROOT_USERNAME: 'someusername'
+      MONGO_INITDB_ROOT_PASSWORD: 'someuserpass'
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init.js:ro
+      - ./data:/data/db
+    ports:
+      - 27017:27017
